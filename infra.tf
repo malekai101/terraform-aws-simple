@@ -1,6 +1,3 @@
-provider "aws" {
-  region = var.region
-}
 
 // The VPC in which our project will live.
 resource "aws_vpc" "main_vpc" {
