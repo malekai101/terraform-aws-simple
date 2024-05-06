@@ -82,12 +82,12 @@ resource "aws_security_group" "allow_ssh" {
 }
 
 check "health_check" {
-  data "http" "terraform_io" {
-    url = "https://www.terraform.io"
+  data "http" "time" {
+    url = "http://worldtimeapi.org/api/timezone/America/Chicago"
   }
 
   assert {
-    condition = data.http.terraform_io.status_code == 200
-    error_message = "${data.http.terraform_io.url} returned an unhealthy status code"
+    condition = data.http.time.status_code == 200
+    error_message = "${data.http.time.url} returned an unhealthy status code"
   }
 }
