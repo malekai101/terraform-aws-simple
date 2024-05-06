@@ -1,6 +1,10 @@
 
 # WARNING: Generated module tests should be considered experimental and be reviewed by the module author.
 
+provider "aws" {
+    region = "us-east-2"
+}
+
 variables {
   project_name = "test_project"
   admin_ip = "76.205.132.95/32"
