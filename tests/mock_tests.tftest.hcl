@@ -18,6 +18,6 @@ run "sets_correct_name" {
 
   assert {
     condition     = aws_s3_bucket.bucket.bucket == "test_project-csmith101-bucket"
-    error_message = "incorrect server name"
+    error_message = "incorrect name"
   }
 }
