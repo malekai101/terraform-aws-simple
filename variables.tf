@@ -3,6 +3,10 @@
 variable "project_name" {
     description = "The name of the project."
     type = string
+    validation {
+    error_message = "The project name must be lower case letters and dashes."
+    condition = can(regex("^[a-z-]*$", var.project_name))
+  }
 }
 
 variable "admin_ip" {
