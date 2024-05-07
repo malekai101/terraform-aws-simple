@@ -6,7 +6,7 @@ provider "aws" {
 }
 
 variables {
-  project_name = "test_project"
+  project_name = "test-project"
   admin_ip = "76.205.132.95/32"
   key = "csmith-sandbox-east2"
   region = "us-east2"

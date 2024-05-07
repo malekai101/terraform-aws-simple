@@ -8,7 +8,7 @@ mock_provider "aws" {
 }
 
 variables {
-  project_name = "test_project"
+  project_name = "test-project"
   admin_ip = "76.205.132.95/32"
   key = "csmith-sandbox-east2"
   region = "us-east2"
@@ -17,7 +17,7 @@ variables {
 run "sets_correct_name" {
 
   assert {
-    condition     = aws_s3_bucket.bucket.bucket == "test_project-csmith101-bucket"
+    condition     = aws_s3_bucket.bucket.bucket == "test-project-csmith101-bucket"
     error_message = "incorrect name"
   }
 }
