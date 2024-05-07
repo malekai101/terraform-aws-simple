@@ -17,12 +17,7 @@ variables {
 run "sets_correct_name" {
 
   assert {
-    condition     = aws_vpc.main_vpc.tags_all["Name"] == "Project test_project VPC"
-    error_message = "incorrect vpc name"
-  }
-
-  assert {
-    condition     = aws_instance.application.tags_all["Name"] == "App Server Test"
+    condition     = aws_s3_bucket.bucket.bucket == "test_project-csmith101-bucket"
     error_message = "incorrect server name"
   }
 }

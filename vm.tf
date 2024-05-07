@@ -117,3 +117,12 @@ locals {
   EOF
   preserve = true
 }
+
+resource "aws_s3_bucket" "bucket" {
+  bucket = "${var.project_name}-csmith101-bucket"
+  force_destroy = true
+  tags = {
+    Project = var.project_name
+    Name    = "Bucket Test"
+  }
+}
