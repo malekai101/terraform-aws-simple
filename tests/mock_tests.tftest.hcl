@@ -1,4 +1,11 @@
-mock_provider "aws" {}
+mock_provider "aws" {
+    override_data {
+    target = data.aws_ami.linux_ami
+    values = {
+      architecture = "x86_64"
+    }
+  }
+}
 
 variables {
   project_name = "test_project"
