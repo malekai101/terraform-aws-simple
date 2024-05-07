@@ -63,3 +63,71 @@ run "security_group_validation" {
     error_message = "incorrect VPC ID for security group"
   }
 }
+
+# Outputs
+
+run "output_validation" {
+  assert {
+    condition     = output.vpc_id == aws_vpc.main_vpc.id
+    error_message = "incorrect VPC ID output"
+  }
+
+  assert {
+    condition     = output.vpc_name == aws_vpc.main_vpc.tags["Name"]
+    error_message = "incorrect VPC name output"
+  }
+
+  assert {
+    condition     = output.subnet_id == aws_subnet.demo_subnet.id
+    error_message = "incorrect subnet ID output"
+  }
+
+  assert {
+    condition     = output.ssh_rule_id == aws_security_group.allow_ssh.id
+    error_message = "incorrect SSH rule ID output"
+  }
+
+  assert {
+    condition     = output.instance_ids == aws_instance.application.id
+    error_message = "incorrect instance IDs output"
+  }
+
+  assert {
+    condition     = output.server_ip == aws_instance.application.public_ip
+    error_message = "incorrect server IP output"
+  }
+
+  assert {
+    condition     = output.server_dns == aws_instance.application.public_dns
+    error_message = "incorrect server DNS output"
+  }
+}
+
+# Vms
+
+run "vm_validation" {
+  assert {
+    condition     = aws_instance.application.ami == data.aws_ami.linux_ami.id
+    error_message = "incorrect AMI for VM"
+  }
+
+  assert {
+    condition     = aws_instance.application.instance_type == "t2.micro"
+    error_message = "incorrect instance type for VM"
+  }
+
+  assert {
+    condition     = aws_instance.application.subnet_id == aws_subnet.demo_subnet.id
+    error_message = "incorrect subnet ID for VM"
+  }
+
+  assert {
+    condition     = aws_instance.application.key_name == var.key
+    error_message = "incorrect key name for VM"
+  }
+
+  assert {
+    condition     = aws_instance.application.associate_public_ip_address == true
+    error_message = "public IP address should be associated with VM"
+  }
+}
